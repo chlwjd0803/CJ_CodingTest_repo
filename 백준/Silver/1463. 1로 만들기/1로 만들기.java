@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+    private BufferedReader br;
+
+    private int[] dp;
+    private int n;
+
+    public Main(){
+        br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    private void solve(){
+        try{
+            n = Integer.parseInt(br.readLine());
+
+            dp = new int[n+1];
+            dp[1] = 0;
+
+            for(int i=2; i<=n; i++){
+                dp[i] = Integer.MAX_VALUE;
+
+                if(i%3 == 0){
+                    dp[i] = Math.min(dp[i], dp[i/3]+1);
+                }
+                if(i%2 == 0){
+                    dp[i] = Math.min(dp[i], dp[i/2]+1);
+                }
+                dp[i] = Math.min(dp[i], dp[i-1]+1);
+            }
+
+            System.out.print(dp[n]);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args){
+        new Main().solve();
+    }
+
+}
