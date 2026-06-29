@@ -2,26 +2,24 @@ import java.util.*;
 
 class Solution {
     
-    private Map<String, Integer> map;
+    private Set<String> set;
     
     public Solution(){
-        map = new HashMap<>();
+        set = new HashSet<>();
     }
     
     public boolean solution(String[] pb) {
         
         for(String p : pb){
-            map.put(p, 1);
+            set.add(p);
         }
         
         for(String p : pb){
-            
             for(int i=1; i<p.length(); i++){
-                if(map.containsKey(p.substring(0,i))){
+                if(set.contains(p.substring(0,i))){
                     return false;
                 }
             }
-            
         }
         
         return true;
